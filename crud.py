@@ -34,6 +34,7 @@ def get_tasks(db: Session):
 def get_task(db: Session, task_id: int):
     return db.query(models.Task).filter(models.Task.id == task_id).first()
 
+#update operation
 def update_task_status(db: Session, task_id: int, status: schemas.StatusEnum):
     task = get_task(db, task_id)
     if task:
@@ -42,6 +43,7 @@ def update_task_status(db: Session, task_id: int, status: schemas.StatusEnum):
         db.refresh(task)
     return task
 
+# delete operation
 def delete_task(db: Session, task_id: int):
     task = get_task(db, task_id)
     if task:
